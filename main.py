@@ -17,7 +17,7 @@ def clean_folder():
     images = glob.glob("images/*.png")
     for image in images:
         os.remove(image)
-        print
+
 
 while True:
     status = 0
@@ -41,7 +41,7 @@ while True:
         if cv2.contourArea(contour) < 5000:
             continue
         x, y, w, h = cv2.boundingRect(contour)
-        rectangle = cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 3)
+        rectangle = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
         if rectangle.any():
             status = 1
             cv2.imwrite(f"images/{count}.png", frame)
@@ -54,7 +54,7 @@ while True:
     status_list = status_list[-2:]
 
     if status_list[0] == 1 and status_list[1] == 0:
-        email_thread = Thread(target=send_email, args=(image_with_object, ))
+        email_thread = Thread(target=send_email, args=(image_with_object,))
         email_thread.daemon = True
         clean_thread = Thread(target=clean_folder)
         clean_thread.daemon = True
