@@ -31,7 +31,7 @@ while True:
 
     delta_frame = cv2.absdiff(first_frame, gray_frame_gau)
 
-    thresh_frame = cv2.threshold(delta_frame, 125, 255, cv2.THRESH_BINARY)[1]
+    thresh_frame = cv2.threshold(delta_frame, 60, 255, cv2.THRESH_BINARY)[1]
     dil_frame = cv2.dilate(thresh_frame, None, iterations=2)
     cv2.imshow("My video", dil_frame)
 
